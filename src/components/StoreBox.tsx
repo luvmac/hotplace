@@ -5,12 +5,18 @@ import { HiOutlineMapPin } from "react-icons/hi2";
 import { StoreType } from "@/interface";
 import { useRouter } from "next/router";
 
-interface StoreBoxProps {
-  store: StoreType | null;
-  setStore: Dispatch<SetStateAction<any>>;
-}
-export default function StoreBox({ store, setStore}: StoreBoxProps) {
+// 스토어 박스는 스토어랑 셋스토어값을 받고있기 때문에 useRecoilState 사용해서 값과 세터 두개를 모두 전역으로 바꿔주기
+import { useRecoilState } from "recoil" 
+import { currentStoreState } from "@/atom"
+
+// interface StoreBoxProps {
+//   store: StoreType | null;
+// }
+// export default function StoreBox({ store, setstore }: StoreBoxProps) {
+  export default function StoreBox() {
   const router = useRouter();
+  // 따라서 Store 박스 같은 경우에는 상태를 가져오거나 props로 받을 필요가 전혀 없어지게 되었다.
+  const [ store, setStore ] = useRecoilState(currentStoreState)
   return (
   <div 
   className="fixed transition ease-in-out delay-150 inset-x-0 mx-auto bottom-20 rounded-lg shadow-lg max-w-sm md:max-w-xl z-10 bg-white">
