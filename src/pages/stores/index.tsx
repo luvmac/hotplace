@@ -7,36 +7,53 @@ import { useInfiniteQuery } from "react-query";
 
 import axios from "axios";
 import Loading from "@/components/Loading";
+
 import { useRouter } from "next/router";
+import { searchState } from '@/atom'
+import { useRecoilValue } from "recoil"
 
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import Loader from "@/components/Loader";
 import SearchFilter from "@/components/SearchFilter";
 
 
+
+
 export default function StoreListPage() {
-  // const router = useRouter();
   // const { page = "1" }: any = router.query;
+
+  const router = useRouter();
   const ref = useRef<HTMLDivElement | null>(null);
   const pageRef = useIntersectionObserver(ref, {});
   const isPageEnd = !!pageRef?.isIntersecting;
+  //리코일로 상태관리
+  const searchValue = useRecoilValue(searchState);
+  
   // 검색어와 지역 검색어를 위한 상태생성
-  const [q, setQ]  = useState<string | null>(null);
+  // const [q, setQ]  = useState<string | null>(null);
   // 지역 상태 위한 상태 생성
-  const [district, setDistrict] = useState<string | null>(null);
+  // const [district, setDistrict] = useState<string | null>(null);
+
+  // 리코일로 상태 생성  console.log(q, district)
+  const searchParams = {
+    q: searchValue?.q,
+    district: searchValue?.district,
+    
+  };
+  
 
   //fetchstore에 함께 넘겨주기 위해 params로 감싸주기 
-  const searchParams = {
-    q: q,
-    district: district,
-  };
-  // 검색할 때 검색한 값이 들어옴 선택한 구(성복구) 도 들어옴
-  // console.log(searchParams)
-  // 키값이랑 비동기로 에이피아이 요청을 
-  // const { isLoading, isError, data: stores } = useQuery(`stores-${page}`, async() => {
-  //   const { data } = await axios(`/api/stores?page=${page}`);
-  //   return data as StoreApiResponse;
-  // });
+  // const searchParams = {
+  //   q: q,
+  //   district: district,
+  // };
+  // // 검색할 때 검색한 값이 들어옴 선택한 구(성복구) 도 들어옴
+  // // console.log(searchParams)
+  // // 키값이랑 비동기로 에이피아이 요청을 
+  // // const { isLoading, isError, data: stores } = useQuery(`stores-${page}`, async() => {
+  // //   const { data } = await axios(`/api/stores?page=${page}`);
+  // //   return data as StoreApiResponse;
+  // // });
 
  
   const fetchStores = async ({ pageParam = 1 }) => {
@@ -95,15 +112,18 @@ export default function StoreListPage() {
       return (
         <div className="px-4 md:max-w-4xl mx-auto py-8">
           {/* search filter */}
-          <SearchFilter setQ={setQ} setDistrict={setDistrict} />
+          {/* <SearchFilter setQ={setQ} setDistrict={setDistrict} /> */}
+          <SearchFilter  />
           <ul role="list" className="divide-y divide-gray-100">
             {isLoading ? (
               <Loading />
             ) : (
               stores?.pages?.map((page, index) => (
                 <React.Fragment key={index}>
-                  {page.data.map((store: StoreType, i) => (
-                     <li className="flex justify-between gap-x-6 py-5" key={i}>
+                  {page.data.map((store: StoreType, i: number) => (
+                     <li className="flex justify-between gap-x-6 py-5 cursor-pointer hover:bg-gray-50" 
+                     key={i} 
+                     onClick={() => router.push(`/stores/${store.id}`)}>
                      <div className="flex gap-x-4">
                        <Image
                          src={

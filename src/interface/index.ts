@@ -18,7 +18,11 @@ export interface StoreApiResponse {
 }
 
 export interface LocationType{
-  lat: number;
-  lng: number;
+  lat?: string | null;
+  lng?: string | null;
   zoom: number;
+}
+export interface SearchType {
+  q?: string;
+  district?: string;
 }

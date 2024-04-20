@@ -4,9 +4,9 @@ import { PrismaClient } from "@prisma/client";
 import GoogleProvider from "next-auth/providers/google";
 import NaverProvider from "next-auth/providers/naver"
 import { getMaxAge } from "next/dist/server/image-optimizer";
+import prisma from "@/db";
 
-
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 
 
