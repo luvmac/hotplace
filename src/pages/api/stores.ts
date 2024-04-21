@@ -79,8 +79,10 @@ export default async function handler(
     return res.status(500).json(null);
   } else {
     // GET 요청 처리
+    // 페이지 값이 있는 경우에
     if (page) {
       const count = await prisma.store.count();
+      // skippage를 따로 생성해서 
       const skipPage = parseInt(page) - 1;
       const stores = await prisma.store.findMany({
         orderBy: { id: "asc" },
@@ -89,6 +91,7 @@ export default async function handler(
           address: district ? { contains: district } : {},
         },
         take: parseInt(limit),
+        // 요 스킵 페이지 값의 10이라는 리밋 값을 곱했음
         skip: skipPage * 10,
       });
 
