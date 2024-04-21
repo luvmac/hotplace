@@ -55,7 +55,7 @@ export default function StoreListPage() {
   // //   return data as StoreApiResponse;
   // // });
 
- 
+
   const fetchStores = async ({ pageParam = 1 }) => {
     const { data } = await axios("/api/stores?page=" + pageParam, {
       params: {

@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 // 스토어 박스는 스토어랑 셋스토어값을 받고있기 때문에 useRecoilState 사용해서 값과 세터 두개를 모두 전역으로 바꿔주기
 import { useRecoilState } from "recoil" 
 import { currentStoreState } from "../atom"
+import Like from "./Like";
 
 // interface StoreBoxProps {
 //   store: StoreType | null;
@@ -42,10 +43,14 @@ import { currentStoreState } from "../atom"
             <AiOutlineClose />
           </button>
         </div>
-        <div className="mt-2 flex gap-2 items-center">
+        <div className="flex justify-between">
+        <div className="mt-2 flex gap-2 items-center col-span-3">
             <HiOutlineMapPin />
-            {store?.address}
+            {store?.address || "주소가 없습니다."}
         </div>
+        <Like storeId={store.id}/>
+        </div>
+      
         <div className="mt-2 flex gap-2 items-center">
             <AiOutlinePhone />
             {store?.phone}
