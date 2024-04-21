@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .navbar {
-  z-index: 1000;
+ 
   @apply flex justify-between items-center fixed w-full h-[52px] top-0 shadow-sm bg-white z-[100];
 }
 
@@ -33,7 +33,7 @@
 
 @media only screen and (max-width: 600px) {
   .navbar--mobile {
-    @apply fixed w-full text-white h-screen top-[52px] bg-blue-800;
+    @apply fixed w-full text-white h-screen top-[52px] bg-blue-800 z-[100];
   }
 
   .navbar__list {

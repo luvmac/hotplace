@@ -17,12 +17,19 @@ export default function Navbar() {
         <Link href="/stores" className='navbar__list--item'>맛집 목록</Link>
         <Link href="/stores/new" className='navbar__list--item'>맛집 등록</Link>
         <Link href="/users/likes" className='navbar__list--item'>찜한 가게</Link>
+        <Link href="/users/mypage" className='navbar__list--item'>
+          마이페이지
+        </Link>
       {status === 'authenticated' ?
        <button type="button" onClick={() => signOut()}>
         로그아웃
       </button>
-      : <Link href="/api/auth/signin" className='navbar__list--item'>로그인</Link>}
+      : <Link href="/api/auth/signin" className='navbar__list--item'>
+        로그인
+        </Link>
+      }
       </div>
+
       
       {/* mobild button */}
       <div 
@@ -40,7 +47,20 @@ export default function Navbar() {
         <Link href="/stores" className='navbar__list--item--mobile'>맛집 목록</Link>
         <Link href="/stores/new" className='navbar__list--item--mobile'>맛집 등록</Link>
         <Link href="/users/likes" className='navbar__ist--item--mobile'>찜한 가게</Link>
-        <Link href="/api/auth/signin" className='navbar__list--item--mobile'>로그인</Link>
+        <Link href="/users/mypage" className='navbar__list--item--mobile'>
+          마이페이지
+        </Link>
+      {status === 'authenticated' ?
+       <button 
+       type="button" 
+       onClick={() => signOut()}
+       className='navbar__list--item--mobile'>
+        로그아웃
+      </button>
+      : <Link href="/api/auth/signin" className='navbar__list--item--mobile'>
+        로그인
+        </Link>
+      }
       </div>
       </div>
     )}
