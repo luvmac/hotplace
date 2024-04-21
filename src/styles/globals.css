@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 .navbar {
+  z-index: 1000;
   @apply flex justify-between items-center fixed w-full h-[52px] top-0 shadow-sm bg-white z-[100];
 }
 
