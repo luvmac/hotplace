@@ -2,12 +2,12 @@ import { Dispatch, SetStateAction } from "react";
 import Image from 'next/image';
 import { AiOutlineClose, AiOutlineInfoCircle, AiOutlineCheck, AiOutlinePhone } from "react-icons/ai";
 import { HiOutlineMapPin } from "react-icons/hi2";
-import { StoreType } from "@/interface";
+import { StoreType } from "../interface";
 import { useRouter } from "next/router";
 
 // 스토어 박스는 스토어랑 셋스토어값을 받고있기 때문에 useRecoilState 사용해서 값과 세터 두개를 모두 전역으로 바꿔주기
 import { useRecoilState } from "recoil" 
-import { currentStoreState } from "@/atom"
+import { currentStoreState } from "../atom"
 
 // interface StoreBoxProps {
 //   store: StoreType | null;

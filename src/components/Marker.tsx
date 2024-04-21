@@ -1,5 +1,5 @@
-import { mapState } from "@/atom";
-import { StoreType } from "@/interface";
+import { mapState } from "../atom";
+import { StoreType } from "../interface";
 import { useEffect, useCallback, Dispatch, SetStateAction } from "react";
 // 읽기전용 리코일
 import { useRecoilValue } from "recoil";

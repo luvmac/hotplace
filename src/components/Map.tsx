@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction} from "react";
 import Script from "next/script";
 import { useSetRecoilState, useRecoilValue} from "recoil"
-import { locationState, mapState } from "@/atom";
+import { locationState, mapState } from "../atom";
 
 declare global {
   interface Window {

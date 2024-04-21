@@ -3,8 +3,8 @@ import Link from "next/link"
 
 import { useSession, signOut } from "next-auth/react"
 import { useState } from "react";
-import { BiMenu } from 'react-icons/bi'
-import { AiOutlineClose } from 'react-icons/ai'
+import { BiMenu } from "react-icons/bi";
+import { AiOutlineClose } from "react-icons/ai";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

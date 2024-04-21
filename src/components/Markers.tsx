@@ -1,5 +1,5 @@
-import { currentStoreState, locationState, mapState } from "@/atom";
-import { StoreType } from "@/interface";
+import { currentStoreState, locationState, mapState } from "../atom";
+import { StoreType } from "../interface";
 import { useEffect, Dispatch, SetStateAction, useCallback } from "react";
 
 //읽기전용 
