@@ -15,6 +15,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<StoreApiResponse | StoreType[] | StoreType | null>
 ) {
+  // 딜리트 메소드 요청으 ㄹ위한 id 값 쿼리로 받기 위해서 id 추가 
   const { page = "", limit = "", q, district, id }: Responsetype = req.query;
   if (req.method === "POST") {
     // 데이터 생성을 처리한다
@@ -35,6 +36,8 @@ export default async function handler(
     });
 
     return res.status(200).json(result);
+
+
   } else if (req.method === "PUT") {
     // 데이터 수정을 처리한다
     const formData = req.body;
@@ -57,6 +60,7 @@ export default async function handler(
     return res.status(200).json(result);
   } else if (req.method === "DELETE") {
     // 데이터 삭제
+    // 아이디가 있을 경우에만 삭제 할 수 있도록 조건문 걸어주기 !
     if (id) {
       const result = await prisma.store.delete({
         where: {

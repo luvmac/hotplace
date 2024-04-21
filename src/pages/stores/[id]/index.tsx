@@ -8,9 +8,11 @@ import { StoreType } from "@/interface";
 import Loader from "@/components/Loader";
 import Map from "@/components/Map";
 import Marker from "@/components/Marker";
+
 // 사용자가 로그인 햇을 때만 수정 폼에 접근 할 수 있도록 분기처리
 import { useSession } from "next-auth/react"
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 
 export default function StorePage() {
@@ -34,6 +36,28 @@ export default function StorePage() {
     enabled: !!id,
     refetchOnWindowFocus: false,
   });
+  
+  const handleDelete = async() => {
+    const confirm = window.confirm("해당 가게를 삭제하시겠습니까?");
+    // store?. < 이부분 언디파인드 일 수 있으니까 confirm && store 이 부분을 추가한다! 
+    // 다른 로직들도 이런식으로 해주면 타입 에러를 해결할 수 있찌 않을까?
+    if(confirm && store) {
+      try {
+        const result = await axios.delete(`/api/stores?id=${store?.id}`);
+
+        if(result.status === 200) {
+          toast.success("가게를 삭제했습니다. !");
+          router.replace("/")
+        } else {
+          toast.error("다시 시도해주세요.")
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error("다시 시도해주세요.")
+      }
+    }
+  };
+
 
   if (isError) {
     return (
@@ -59,8 +83,8 @@ export default function StorePage() {
             {store?.address}
           </p>
         </div>
-
-        <div className="flex items-center gap-4">
+        {status === 'authenticated' && (
+          <div className="flex items-center gap-4 px-4 py-3">
           <Link 
           className="underline hover:text-gray-400 text-sm" 
           href={`/stores/${store?.id}/edit`}
@@ -69,10 +93,13 @@ export default function StorePage() {
           </Link>
           <button 
           type="button" 
-          className="underline hover:text-gray-400 text-sm">
+          className="underline hover:text-gray-400 text-sm"
+          onClick={handleDelete}>
             삭제
           </button>
         </div>
+        )}
+        
 
 
         </div>
