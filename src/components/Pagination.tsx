@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 interface Pagination {
-  total: number;
+  total: number | any;
   page: string;
   pathname: string;
 }
