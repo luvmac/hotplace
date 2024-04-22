@@ -20,24 +20,45 @@ export interface LikeInterface {
 export interface LikeApiResponse {
   data: LikeInterface[];
   totalPage?: number;
-  // 사용안하니까 빼주기!
-  // totalCount?: number;
-  page: number;
+  page?: number;
+}
+
+export interface CommentInterface {
+  id: number;
+  storeId: number;
+  userId: number;
+  store?: StoreType;
+  body: string;
+  user?: UserType;
+  createdAt: Date;
+}
+
+interface UserType {
+  id: number;
+  email: string;
+  name?: string | null;
+  image?: string | null;
+}
+
+export interface CommentApiResponse {
+  data: CommentInterface[];
+  totalPage?: number;
+  page?: number;
 }
 
 export interface StoreApiResponse {
   data: StoreType[];
   totalPage?: number;
   totalCount?: number;
-  page: number;
+  page?: number;
 }
 
-
-export interface LocationType{
+export interface LocationType {
   lat?: string | null;
   lng?: string | null;
-  zoom: number;
+  zoom?: number;
 }
+
 export interface SearchType {
   q?: string;
   district?: string;
