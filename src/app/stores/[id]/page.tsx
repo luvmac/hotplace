@@ -22,6 +22,9 @@ interface ParamsProps {
 export default function StorePage({ params, searchParams }: ParamsProps) {
   const router = useRouter();
   const id = params.id;
+  console.log('searchParams',searchParams );
+  console.log('searchParams.page', searchParams.page)
+  const page = searchParams.page || "1"
   const { status } = useSession();
 
   const fetchStore = async () => {
@@ -170,7 +173,7 @@ export default function StorePage({ params, searchParams }: ParamsProps) {
             <Map lat={store?.lat} lng={store?.lng} zoom={1} />
             <Marker store={store} />
           </div>
-          <Comments storeId={store.id} page={searchParams.page} />
+          <Comments storeId={store.id} page={page} />
         </>
       )}
     </>

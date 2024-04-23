@@ -16,12 +16,14 @@ export default function CommentList({
 }: CommentListProps) {
   const { data: session } = useSession();
 
+
   const handleDeleteComment = async (id: number) => {
     const confirm = window.confirm("해당 댓글을 삭제하시겠습니까?");
 
     if (confirm) {
       try {
         const result = await axios.delete(`/api/comment?id=${id}`);
+
 
         if (result.status === 200) {
           toast.success("댓글을 삭제했습니다.");

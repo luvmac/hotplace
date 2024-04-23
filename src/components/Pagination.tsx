@@ -29,7 +29,7 @@ export default function Pagination({ total = 0, page, pathname }: Pagination) {
             <Link
               href={{
                 pathname: pathname,
-                query: { page: parseInt(page) - 1 },
+                query: { page: parseInt() - 1 },
               }}
             >
               <span className={`px-3 py-2 rounded border shadow-sm bg-white`}>

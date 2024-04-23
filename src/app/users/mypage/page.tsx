@@ -19,12 +19,12 @@ export default function Mypage({
     const { data } = await axios(
       `/api/comment?&limit=5&page=${page}&user=${true}`
     );
-
+      console.log('@@@@data', data)
     return data as CommentApiResponse;
   };
 
   const { data: comments, refetch } = useQuery(
-    `comments-${page}`,
+    `comment-${page}`,
     fetchComments
   );
 
