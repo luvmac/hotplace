@@ -38,7 +38,7 @@ model Store {
 
 model Like {
   id        Int      @id @default(autoincrement())
-  createAt DateTime @default(now())
+  createdAt DateTime @default(now())
   storeId   Int
   userId    Int
   store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
@@ -48,7 +48,7 @@ model Like {
 
 model Comment {
   id        Int      @id @default(autoincrement())
-  createAt DateTime @default(now())
+  createdAt DateTime @default(now())
   storeId   Int
   userId    Int
   body      String

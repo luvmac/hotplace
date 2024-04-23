@@ -54,7 +54,7 @@ export default function CommentList({
             <div className="flex flex-col space-y-1 flex-1">
               <div>{comment?.user?.email}</div>
               <div className="text-xs">
-                {new Date(comment?.createAt)?.toLocaleDateString()}
+                {new Date(comment?.createdAt)?.toLocaleDateString()}
               </div>
               <div className="text-black mt-1 text-base">{comment.body}</div>
               {displayStore && comment.store && (

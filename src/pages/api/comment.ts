@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 import prisma from "../../db";
 import { CommentInterface, CommentApiResponse } from "@/interface";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 interface ResponseType {
   id?: string;
@@ -74,7 +75,7 @@ export default async function handler(
     });
     // 댓글
     const comments = await prisma.comment.findMany({
-      orderBy: { createAt: "desc" },
+      orderBy: { createdAt: "desc" },
       where: {
         storeId: storeId ? parseInt(storeId) : {},
         // 만약에 유저가 있는 경우에 세션의 유저의 아이디를 

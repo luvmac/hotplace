@@ -31,7 +31,7 @@ export interface CommentInterface {
   store?: StoreType;
   body: string;
   user?: UserType;
-  createAt: Date;
+  createdAt: Date;
 }
 
 interface UserType {
