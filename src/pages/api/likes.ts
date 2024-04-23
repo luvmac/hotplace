@@ -72,7 +72,7 @@ export default async function handler(
     const likes = await prisma.like.findMany({
       orderBy: { 
         // 최신순대로 정렬을 해서 보낼 수 있도록 desc 추가
-        createAt: "desc", 
+        createdAt: "desc", 
       },
       // 모든 라이크 데이터를 보내쥬는게 아니라 유저가 찜한 라이크 데이터만 보내줘야 하기 때문에
       // userId로 작업!
