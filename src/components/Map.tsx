@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction} from "react";
+'use client'
+
 import Script from "next/script";
 import { useSetRecoilState, useRecoilValue} from "recoil"
 import { locationState, mapState } from "../atom";

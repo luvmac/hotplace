@@ -61,7 +61,7 @@ export default function CommentList({
                 <div className="mt-2">
                   <Link
                     href={`/stores/${comment.store.id}`}
-                    className="text-blue-700 underline hover:text-blue-600 font-medium"
+                    className="text-gray-500 hover:text-gray-400 text-xs underline font-medium"
                   >
                     {comment.store.name}
                   </Link>
